@@ -11,12 +11,20 @@ router.get('/', function(req, res, next) {
 router.get('/books', function(req, res, next) {
   queries.getBooks().then(function(books) {
     queries.getAuthors().then(function(authors) {
-      console.log(authors);
       res.render('books', {
         title: 'books',
         books: books,
         authors: authors
       })
+    })
+  })
+});
+
+router.get('/books/new', function(req, res, next) {
+  queries.getAuthors().then(function(authors) {
+    res.render('newBook', {
+      title: 'new book',
+      authors: authors
     })
   })
 });

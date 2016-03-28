@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="/books/new">
+                <p>Title:</p><br>
+                <input type="text" name="title" required><br><br>
+                <p>Genre:</p><br>
+                <input type="text" name="genre" required><br><br>
+                <p>Cover Image URL:</p><br>
+                <input type="url" name="book_cover_url" required><br><br>
+                <textarea rows="4" cols="50" name="description" required></textarea>
+                <p>Authors:</p><br>
+                <select required name="author">
+                    {%  for author in authors %}
+                    <option value="{{ author.first_name }} {{ author.last_name }}">{{ author.first_name }} {{ author.last_name }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

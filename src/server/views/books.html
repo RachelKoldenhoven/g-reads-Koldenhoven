@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="container">
+        {% for book in books %}
+        <div class="row">
+        <div class="book col-md-8">
+            <div class="col-md-2">
+               <figure>
+                   <img src = "{{ book.book_cover_url }}">
+               </figure>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                <div class="col-md-6">
+                    <h2>{{ book.title }}</h2>
+                    {% for author in authors %}
+                    {% if book.id ===  author.book_id %}
+                    <h3>By {{ author.first_name }} {{ author.last_name }}</h3>
+                    {% endif %}
+                    {% endfor %}
+                    <h3>{{ book.book_genre }}</h3>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" id="edit">Edit</button>
+                    <button type="submit" id="delete">Delete</button>
+                </div>
+                </div>
+                <p>{{ book.description }}</p>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

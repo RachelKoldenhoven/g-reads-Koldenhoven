@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 var Promise = require('bluebird');
+if ( !process.env.NODE_ENV ) { require('dotenv').config(); }
+
 
 
 // *** routes *** //

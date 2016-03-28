@@ -17,3 +17,12 @@ a {
 #bump-right {
     margin-left: 50px;
 }
+
+
+figure >img {
+   width: 100px;
+}
+
+button {
+    float: right;
+}

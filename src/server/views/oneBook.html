@@ -24,7 +24,7 @@
                             <h3>{{ book.book_genre }}</h3>
                         </div>
                         <div class="col-md-3">
-                            <button class="btn btn-info"  type="submit" id="edit">Edit</button>
+                            <a href="/books/{{ book.id }}/edit"><button class="btn btn-info"  type="submit" id="edit">Edit</button></a>
                             <a href="/books/{{ book.id }}/delete"><button class="btn btn-danger" type="button" id="delete">Delete</button></a>
                         </div>
                     </div>

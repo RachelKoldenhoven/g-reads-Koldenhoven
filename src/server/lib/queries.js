@@ -10,7 +10,7 @@ module.exports = {
     return knex.table('books');
   },
 
-  getOneBook: function(id) {
+  getOneBook: function (id) {
     return knex.table('books').where('id', id);
   },
 
@@ -18,11 +18,11 @@ module.exports = {
     return knex.table('authors');
   },
 
-  getSomeAuthors: function(id) {
+  getSomeAuthors: function (id) {
     return knex.table('authors').where('book_id', id);
   },
 
-  addNewBooK: function(newBook) {
+  addNewBooK: function (newBook) {
     return knex.insert({
       title: newBook.title,
       book_genre: newBook.book_genre,
@@ -31,13 +31,30 @@ module.exports = {
     }).table('books').returning('id');
   },
 
-  addNewAuthor: function(newAuthor) {
-    return knex.insert( {
-
-    })
+  addNewAuthor: function (newAuthor) {
+    return knex.insert({})
   },
 
-  deleteBook: function(id) {
+  deleteBook: function (id) {
     return knex.table('books').where('id', id).del();
+  },
+
+  updateBook: function(updatedBook, id) {
+    return knex.update({
+      title: updatedBook.title,
+      book_genre: updatedBook.book_genre,
+      description: updatedBook.description,
+      book_cover_url: updatedBook.book_cover_url
+    }).table('books').where('id', id);
+  },
+
+  updateAuthor: function(updatedBook, id) {
+    return knex.update({
+      first_name:  updatedBook.first_name,
+      last_name: updatedBook.last_name
+    }).table('authors')
+      .where('book_id', id);
   }
+
+
 };

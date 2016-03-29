@@ -93,6 +93,38 @@ router.post('/books/:id/delete', function(req, res, next) {
 });
 
 
+/// *** get edit book view *** ///
+router.get('/books/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneBook(id).then(function(book) {
+    queries.getSomeAuthors(id).then(function (authors) {
+      res.render('editBook', {
+        title: 'edit',
+        book: book[0],
+        authors: authors
+      })
+    })
+  })
+});
+
+/// *** handle post request to edit a book *** ///
+router.post('/books/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  var updatedBook = req.body;
+  var author = updatedBook.author.split(" ");
+  updatedBook.last_name = author[author.length-1];
+  updatedBook.first_name = "";
+  for(var i = 0; i < author.length-1; i++) {
+    updatedBook.first_name += author[i];
+    console.log(updatedBook.first_name);
+  }
+  console.log(updatedBook);
+   queries.updateBook(updatedBook, id).then(function() {
+    queries.updateAuthor(updatedBook, id).then(function() {
+      res.redirect('/books/' + id);
+    })
+  })
+});
 
 
 module.exports = router;

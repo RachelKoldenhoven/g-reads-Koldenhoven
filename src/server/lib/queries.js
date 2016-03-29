@@ -18,6 +18,10 @@ module.exports = {
     return knex.table('authors');
   },
 
+  getOneAuthor: function(id) {
+    return knex.table('authors').where('id', id);
+  },
+
   getSomeAuthors: function (id) {
     return knex.table('authors').where('book_id', id);
   },
@@ -32,7 +36,12 @@ module.exports = {
   },
 
   addNewAuthor: function (newAuthor) {
-    return knex.insert({})
+    return knex.insert({
+      first_name: newAuthor.first_name,
+      last_name: newAuthor.last_name,
+      bio: newAuthor.bio,
+      picture_url: newAuthor.picture_url
+    }).table('authors').returning('id');
   },
 
   deleteBook: function (id) {

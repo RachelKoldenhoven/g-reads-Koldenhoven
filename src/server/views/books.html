@@ -27,8 +27,8 @@
                     <h3>{{ book.book_genre }}</h3>
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" id="edit">Edit</button>
-                    <button type="submit" id="delete">Delete</button>
+                    <button class="btn btn-info"  type="submit" id="edit">Edit</button>
+                    <button class="btn btn-danger" type="submit" id="delete">Delete</button>
                 </div>
                 </div>
                 <p>{{ book.description }}</p>
@@ -36,6 +36,7 @@
         </div>
         </div>
         {% endfor %}
+        <a href="/books/new">Add a Book</a>
     </div>
 </div>
 

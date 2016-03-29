@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+{% for error in errors %}
+<div class="alert alert-warning">
+    <p>{{ error }}</p>
+</div>
+{% endfor %}
+
+<form class="form-horizontal" method="post" action="/books/new">
+    <fieldset>
+        <legend>New Book</legend>
+        <div class="form-group">
+            <label for="title" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="genre" class="col-lg-2 control-label">Genre</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="genre" name="genre" placeholder="Genre" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="book_cover_url" class="col-lg-2 control-label">Cover Image URL</label>
+            <div class="col-lg-6">
+                <input type="url" class="form-control" id="book_cover_url" name="book_cover_url" placeholder="Cover Image URL" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-lg-2 control-label">Description</label>
+            <div class="col-lg-6">
+                <textarea class="form-control" rows="3" id="description" name="description" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="author" class="col-lg-2 control-label">Author</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="author" name="author" placeholder="Author" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{% endblock %}

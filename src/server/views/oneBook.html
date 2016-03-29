@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="book col-md-8">
+                <div class="col-md-2">
+                    <figure>
+                        <img src = "{{ book.book_cover_url }}">
+                    </figure>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>{{ book.title }}</h2>
+                            {% for author in authors %}
+                            <h3>By {{ author.first_name }} {{ author.last_name }}</h3>
+                            {% endfor %}
+                            <h3>{{ book.book_genre }}</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-info"  type="submit" id="edit">Edit</button>
+                            <button class="btn btn-danger" type="submit" id="delete">Delete</button>
+                        </div>
+                    </div>
+                    <p>{{ book.description }}</p>
+                </div>
+            </div>
+        </div>
+        <a href="/books/new">Add a Book</a>
+    </div>
+</div>
+
+{% endblock %}

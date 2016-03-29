@@ -46,6 +46,13 @@ router.get('/books/new', function(req, res, next) {
   })
 });
 
+/// *** get new author view *** ///
+router.get('/authors/new', function(req, res, next) {
+  res.render('newAuthor', {
+    title: 'new author'
+  })
+});
+
 /// *** show one book page *** ///
 router.get('/books/:id', function(req, res, next) {
   var id = req.params.id;
@@ -56,6 +63,17 @@ router.get('/books/:id', function(req, res, next) {
         book: book[0],
         authors: authors
       })
+    })
+  })
+});
+
+/// *** show one author page *** ///
+router.get('/authors/:id', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneAuthor(id).then(function(author) {
+    res.render('oneAuthor', {
+      title: author.first_name + author.last_name,
+      author: author[0]
     })
   })
 });
@@ -77,6 +95,15 @@ router.post('/books/new', function(req, res, next) {
         res.redirect('/books/' + id);
       })
     }
+  })
+});
+
+/// *** add new author to db *** ///
+router.post('/authors/new', function(req, res, next) {
+  var newAuthor = req.body;
+  queries.addNewAuthor(newAuthor).then(function(id) {
+    var id = parseInt(id);
+    res.redirect('/authors/' + id);
   })
 });
 
@@ -117,6 +144,8 @@ router.get('/books/:id/edit', function(req, res, next) {
     })
   })
 });
+
+
 
 /// *** handle post request to edit a book *** ///
 router.post('/books/:id/edit', function(req, res, next) {

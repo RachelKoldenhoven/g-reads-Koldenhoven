@@ -93,6 +93,21 @@ router.post('/books/:id/delete', function(req, res, next) {
 });
 
 
+/// *** get edit book view *** ///
+router.get('/books/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneBook(id).then(function(book) {
+    queries.getSomeAuthors(id).then(function (authors) {
+      res.render('editBook', {
+        title: 'edit',
+        book: book[0],
+        authors: authors
+      })
+    })
+  })
+});
+
+
 
 
 module.exports = router;

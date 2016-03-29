@@ -19,7 +19,7 @@
                         <div class="col-md-6">
                             <h2>{{ book.title }}</h2>
                             {% for author in authors %}
-                            <h3>By {{ author.first_name }} {{ author.last_name }}</h3>
+                            <a href="/authors/{{ author.id }}"><h3>By {{ author.first_name }} {{ author.last_name }}</h3></a>
                             {% endfor %}
                             <h3>{{ book.book_genre }}</h3>
                         </div>

@@ -21,7 +21,7 @@
                     <a href="/books/{{ book.id }}"><h2>{{ book.title }}</h2></a>
                     {% for author in authors %}
                     {% if book.id ===  author.book_id %}
-                    <h3>By {{ author.first_name }} {{ author.last_name }}</h3>
+                    <a href="/authors/{{ author.id }}"><h3>By {{ author.first_name }} {{ author.last_name }}</h3></a>
                     {% endif %}
                     {% endfor %}
                     <h3>{{ book.book_genre }}</h3>

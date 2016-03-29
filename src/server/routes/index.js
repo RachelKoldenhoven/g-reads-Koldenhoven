@@ -72,7 +72,7 @@ router.get('/authors/:id', function(req, res, next) {
   var id = req.params.id;
   queries.getOneAuthor(id).then(function(author) {
     res.render('oneAuthor', {
-      title: author.first_name + author.last_name,
+      title: author[0].last_name,
       author: author[0]
     })
   })

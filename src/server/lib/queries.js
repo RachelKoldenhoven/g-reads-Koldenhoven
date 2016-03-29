@@ -67,6 +67,16 @@ module.exports = {
       last_name: updatedBook.last_name
     }).table('authors')
       .where('book_id', id);
+  },
+
+  updateAuthorComplete: function(updatedAuthor, id) {
+    return knex.update({
+      first_name:  updatedAuthor.first_name,
+      last_name: updatedAuthor.last_name,
+      bio: updatedAuthor.bio,
+      picture_url: updatedAuthor.picture_url
+    }).table('authors')
+      .where('id', id);
   }
 
 

@@ -163,7 +163,16 @@ router.get('/books/:id/edit', function(req, res, next) {
   })
 });
 
-
+/// *** get edit author view *** ///
+router.get('/authors/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneAuthor(id).then(function(author) {
+      res.render('editAuthor', {
+        title: 'edit',
+        author: author[0]
+      })
+    })
+});
 
 /// *** handle post request to edit a book *** ///
 router.post('/books/:id/edit', function(req, res, next) {
@@ -174,13 +183,21 @@ router.post('/books/:id/edit', function(req, res, next) {
   updatedBook.first_name = "";
   for(var i = 0; i < author.length-1; i++) {
     updatedBook.first_name += author[i];
-    console.log(updatedBook.first_name);
   }
   console.log(updatedBook);
    queries.updateBook(updatedBook, id).then(function() {
     queries.updateAuthor(updatedBook, id).then(function() {
       res.redirect('/books/' + id);
     })
+  })
+});
+
+/// *** handle post request to edit an author *** ////
+router.post('/authors/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  var updatedAuthor = req.body;
+  queries.updateAuthorComplete(updatedAuthor, id).then(function() {
+    res.redirect('/authors/' + id);
   })
 });
 

@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+{% for error in errors %}
+<div class="alert alert-warning">
+    <p>{{ error }}</p>
+</div>
+{% endfor %}
+
+<form class="form-horizontal" method="post" action="/authors/{{ author.id }}/edit">
+    <fieldset>
+        <legend>Edit {{ author.first_name }} {{ author.last_name }}</legend>
+        <div class="form-group">
+            <label for="first_name" class="col-lg-2 control-label">First Name</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ author.first_name }}" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="last_name" class="col-lg-2 control-label">Last Name</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ author.last_name }}" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture_url" class="col-lg-2 control-label">Portrait URL</label>
+            <div class="col-lg-6">
+                <input type="url" class="form-control" id="picture_url" name="picture_url" value="{{ author.picture_url }}" autocomplete="off" style="cursor: auto;" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bio" class="col-lg-2 control-label">Biography</label>
+            <div class="col-lg-6">
+                <textarea class="form-control" rows="3" id="bio" name="bio" required>{{ author.bio }}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{% endblock %}

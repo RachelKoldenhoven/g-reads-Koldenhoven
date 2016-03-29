@@ -121,12 +121,30 @@ router.get('/books/:id/delete', function(req, res, next) {
   })
 });
 
+/// *** get the delete author page *** ///
+router.get('/authors/:id/delete', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneAuthor(id).then(function(author) {
+      res.render('deleteAuthor', {
+        title: 'delete',
+        author: author[0]
+      })
+  })
+});
 
 /// *** handle post to delete book from db *** ///
 router.post('/books/:id/delete', function(req, res, next) {
   var id = req.params.id;
   queries.deleteBook(id).then(function() {
     res.redirect('/books');
+  });
+});
+
+/// *** handle post to delete author from db *** ///
+router.post('/authors/:id/delete', function(req, res, next) {
+  var id = req.params.id;
+  queries.deleteAuthor(id).then(function() {
+    res.redirect('/authors');
   });
 });
 

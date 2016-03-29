@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="book col-md-8">
+                <div class="col-md-2">
+                    <figure>
+                        <img src = "{{ author.picture_url }}">
+                    </figure>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/authors/{{ author.id }}"><h2>{{ author.first_name }} {{ author.last_name }}</h2></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/authors/{{ author.id }}/edit"><button class="btn btn-info"  type="submit" id="edit">Edit</button></a>
+                            <a href="/authors/{{ author.id }}/delete"><button class="btn btn-danger" type="button" id="delete">Delete</button></a>
+                        </div>
+                    </div>
+                    <p>{{ author.bio }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <form method="post" action="/authors/{{ author.id }}/delete">
+                    <button class="btn btn-danger btn-block" type="submit" id="delete">Delete {{ author.first_name }} {{ author.last_name }}?</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

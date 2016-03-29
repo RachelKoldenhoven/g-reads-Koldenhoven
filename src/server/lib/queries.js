@@ -48,6 +48,10 @@ module.exports = {
     return knex.table('books').where('id', id).del();
   },
 
+  deleteAuthor: function(id) {
+    return knex.table('authors').where('id', id).del();
+  },
+
   updateBook: function(updatedBook, id) {
     return knex.update({
       title: updatedBook.title,

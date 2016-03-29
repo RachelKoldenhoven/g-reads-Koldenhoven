@@ -25,6 +25,17 @@ router.get('/books', function(req, res, next) {
 });
 
 
+/// *** show all authors page *** ///
+router.get('/authors', function(req, res, next) {
+  queries.getAuthors().then(function(authors) {
+    res.render('authors', {
+      title: 'authors',
+      authors: authors
+    })
+  })
+});
+
+
 /// *** render new book page *** ///
 router.get('/books/new', function(req, res, next) {
   queries.getAuthors().then(function(authors) {

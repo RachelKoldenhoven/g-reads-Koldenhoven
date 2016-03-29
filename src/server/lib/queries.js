@@ -35,5 +35,9 @@ module.exports = {
     return knex.insert( {
 
     })
+  },
+
+  deleteBook: function(id) {
+    return knex.table('books').where('id', id).del();
   }
 };

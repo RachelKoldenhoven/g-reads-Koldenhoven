@@ -49,6 +49,7 @@ router.get('/books/:id', function(req, res, next) {
   })
 });
 
+/// *** validate and add a new book *** ///
 router.post('/books/new', function(req, res, next) {
   var newBook = req.body;
   console.log(newBook);
@@ -66,6 +67,29 @@ router.post('/books/new', function(req, res, next) {
       })
     }
   })
+});
+
+/// *** get the delete book page *** ///
+router.get('/books/:id/delete', function(req, res, next) {
+  var id = req.params.id;
+  queries.getOneBook(id).then(function(book) {
+    queries.getSomeAuthors(id).then(function(authors) {
+      res.render('delete', {
+        title: 'delete',
+        book: book[0],
+        authors: authors
+      })
+    })
+  })
+});
+
+
+/// *** handle post to delete book from db *** ///
+router.post('/books/:id/delete', function(req, res, next) {
+  var id = req.params.id;
+  queries.deleteBook(id).then(function() {
+    res.redirect('/books');
+  });
 });
 
 

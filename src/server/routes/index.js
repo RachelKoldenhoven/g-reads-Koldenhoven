@@ -107,7 +107,24 @@ router.get('/books/:id/edit', function(req, res, next) {
   })
 });
 
-
+/// *** handle post request to edit a book *** ///
+router.post('/books/:id/edit', function(req, res, next) {
+  var id = req.params.id;
+  var updatedBook = req.body;
+  var author = updatedBook.author.split(" ");
+  updatedBook.last_name = author[author.length-1];
+  updatedBook.first_name = "";
+  for(var i = 0; i < author.length-1; i++) {
+    updatedBook.first_name += author[i];
+    console.log(updatedBook.first_name);
+  }
+  console.log(updatedBook);
+   queries.updateBook(updatedBook, id).then(function() {
+    queries.updateAuthor(updatedBook, id).then(function() {
+      res.redirect('/books/' + id);
+    })
+  })
+});
 
 
 module.exports = router;

@@ -56,7 +56,10 @@ router.get('/authors/new', function(req, res, next) {
 /// *** show one book page *** ///
 router.get('/books/:id', function(req, res, next) {
   var id = req.params.id;
+  console.log(id);
   queries.getOneBook(id).then(function(book) {
+    console.log(book);
+
     queries.getSomeAuthors(id).then(function(authors) {
       res.render('oneBook', {
         title: book.title,
@@ -71,9 +74,12 @@ router.get('/books/:id', function(req, res, next) {
 router.get('/authors/:id', function(req, res, next) {
   var id = req.params.id;
   queries.getOneAuthor(id).then(function(author) {
-    res.render('oneAuthor', {
-      title: author[0].last_name,
-      author: author[0]
+    queries.getBooksByAuthor(id).then(function(books) {
+      res.render('oneAuthor', {
+        title: author[0].last_name,
+        author: author[0],
+        books: books
+      })
     })
   })
 });

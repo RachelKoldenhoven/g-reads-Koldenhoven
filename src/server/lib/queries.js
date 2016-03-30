@@ -10,7 +10,14 @@ module.exports = {
     return knex.table('books');
   },
 
+  getBooksByAuthor: function(id) {
+    return knex.table('authors')
+      .innerJoin('books', 'books.id', '=', 'authors.book_id')
+      .where('authors.id', id);
+  },
+
   getOneBook: function (id) {
+    console.log('id in query: ' + id);
     return knex.table('books').where('id', id);
   },
 

@@ -28,6 +28,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Books:</h3>
+                {% for book in books %}
+                <a href="/books/{{ book.id }}"><h4>{{ book.title }}</h4></a>
+                {% endfor %}
+            </div>
+        </div>
         <a href="/authors/new">Add an Author</a>
     </div>
 </div>
